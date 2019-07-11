@@ -16,6 +16,7 @@ before_install:
   - gcloud container clusters get-credentials multi-cluster
   - echo "$DOCKER_PASSWORD" | docker login -u "$DOCKER_USERNAME" --password-stdin
   - docker build -t deepakborania/react-test -f ./client/Dockerfile.dev ./client
+  - rm -rf service-account.json
 
 script:
   - docker run deepakborania/react-test npm test -- --coverage
